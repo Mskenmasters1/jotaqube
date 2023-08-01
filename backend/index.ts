@@ -5,7 +5,7 @@ import cors from 'cors';
 import { dbConnection } from './database/config';
 import { routerAuth } from './routes/routerAuth';
 import { routerUsuarios } from './routes/routerUsuarios';
-import { routerSalas } from './routes/routerSalas';
+import { routerCursos } from './routes/routerCursos';
 import { Server, Socket } from 'socket.io';
 import { UsuariosConectadosLista } from './classes/usuariosConectadosLista';
 
@@ -23,7 +23,7 @@ app.use(express.json());
 
 app.use('/api/auth', routerAuth);
 app.use('/api/usuarios', routerUsuarios);
-app.use('/api/salas', routerSalas);
+app.use('/api/cursos', routerCursos);
 
 const httpServer = http.createServer(app);
 const io = new Server(httpServer);
