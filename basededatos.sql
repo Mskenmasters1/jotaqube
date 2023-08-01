@@ -21,9 +21,9 @@ CREATE TABLE cursos (
 
 CREATE TABLE codigos (
 	idCodigo INT UNSIGNED NOT NULL AUTO_INCREMENT,
-	titulo varchar(1000) not null,
+	titulo varchar(200) not null,
 	codigo mediumtext not null,
-	indicaciones VARCHAR(200),
+	indicaciones VARCHAR(1000),
 	fechaHora DATETIME NOT NULL,
 	cursos_idCurso INT UNSIGNED NOT NULL,
 	usuarios_email VARCHAR(100) NOT NULL,
