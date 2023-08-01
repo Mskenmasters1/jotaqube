@@ -9,7 +9,7 @@ use codejqb;
 CREATE TABLE usuarios (
 	email VARCHAR(100) NOT NULL,
 	password VARCHAR(150) NOT NULL,
-	token nvarchar(500) not null,
+	token varchar(500) not null,
 	PRIMARY KEY (email)
 );
 
@@ -20,9 +20,9 @@ CREATE TABLE cursos (
 );
 
 CREATE TABLE codigos (
-	idCodigo INT NOT NULL AUTO_INCREMENT,
-	titulo varchar(1000),
-	codigo mediumtext,
+	idCodigo INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	titulo varchar(1000) not null,
+	codigo mediumtext not null,
 	indicaciones VARCHAR(200),
 	fechaHora DATETIME NOT NULL,
 	cursos_idCurso INT UNSIGNED NOT NULL,
