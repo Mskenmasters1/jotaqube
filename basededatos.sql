@@ -1,6 +1,6 @@
-drop database chat;
-create database chat;
-use chat;
+drop database codejqb;
+create database codejqb;
+use codejqb;
 
 CREATE TABLE usuarios (
     email VARCHAR(100) NOT NULL,
@@ -10,10 +10,10 @@ CREATE TABLE usuarios (
 );
 
 
-CREATE TABLE salas (
-    idSala INT UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE cursos (
+    idCurso INT UNSIGNED NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL,
-    PRIMARY KEY (idSala)
+    PRIMARY KEY (idCurso)
 );
 
 CREATE TABLE mensajes (
@@ -23,8 +23,8 @@ CREATE TABLE mensajes (
     salas_idSala INT UNSIGNED NOT NULL,
     usuarios_email VARCHAR(100) NOT NULL,
     PRIMARY KEY (idMensaje),
-    FOREIGN KEY (salas_idSala) REFERENCES salas (idSala),
+    FOREIGN KEY (cursos_idCurso) REFERENCES cursos (idCurso),
     FOREIGN KEY (usuarios_email) REFERENCES usuarios (email)
 );
 
-INSERT INTO salas VALUES (default, "Principal");
+INSERT INTO cursos VALUES (default, "Curso NodeJS");
