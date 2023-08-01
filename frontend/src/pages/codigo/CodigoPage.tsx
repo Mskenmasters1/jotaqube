@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
-export const ChatPage = () => {
+export const CodigoPage = () => {
   const { idSala, nombre } = useParams();
   const navigate = useNavigate();
 
