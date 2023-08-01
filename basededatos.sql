@@ -19,6 +19,7 @@ CREATE TABLE cursos (
 
 CREATE TABLE codigos (
     idCodigo INT NOT NULL AUTO_INCREMENT,
+    titulo varchar(1000),
     codigo mediumtext,
     indicaciones VARCHAR(200) NOT NULL,
     fechaHora DATETIME NOT NULL,
