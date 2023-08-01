@@ -1,5 +1,8 @@
+import { Socket } from 'socket.io-client';
+
 export interface IUsuarioInfo {
   email: string;
+  socket: Socket | undefined;
 }
 
 // Esta interface determina el tipo que todos los componentes van a utilizar para gestionar el context de la aplicación

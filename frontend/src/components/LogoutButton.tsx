@@ -5,12 +5,13 @@ import { IUsuarioInfoContext } from '../interfaces/context.interface';
 
 export const LogoutButton = () => {
   const { usuarioInfo, setUsuarioInfo } = useContext<IUsuarioInfoContext>(AppContext);
+  const { socket } = usuarioInfo;
   const navigate = useNavigate();
 
   const logout = () => {
-    setUsuarioInfo({ email: '' });
     localStorage.removeItem('usuarioInfo');
-    // Navegamos a login eliminando el historial reciente para no volver atrás
+    socket?.disconnect();
+    setUsuarioInfo({ email: '', socket: undefined });
     navigate('/', {
       replace: true
     });

@@ -5,7 +5,8 @@ import { IUsuarioInfo, IUsuarioInfoContext } from '../interfaces/context.interfa
 
 // Comenzamos con un usuario vacío
 const usuarioInfo: IUsuarioInfo = {
-  email: ''
+  email: '',
+  socket: undefined
 };
 
 // Creamos el objeto que va a formar parte del context
