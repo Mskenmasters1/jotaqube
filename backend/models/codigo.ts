@@ -1,34 +1,44 @@
 import { DataTypes, Model } from 'sequelize';
 import { db } from '../database/config';
-import { Sala } from './sala';
 import { Usuario } from './usuario';
+import { Curso } from './curso';
 
-interface MensajeAttributes {
-  idMensaje?: number;
-  texto: string;
+interface CodigoAttributes {
+  idCodigo?: number;
+  titulo: string;
+  codigo: string;
+  indicaciones: string;
   fechaHora: Date;
-  salas_idSala: number;
+  cursos_idCurso: number;
   usuarios_email: string;
 }
 
-export const Mensaje = db.define<Model<MensajeAttributes>>(
-  'Mensaje',
+export const Codigo = db.define<Model<CodigoAttributes>>(
+  'Codigo',
   {
-    idMensaje: {
+    idCodigo: {
       type: DataTypes.INTEGER.UNSIGNED,
       autoIncrement: true,
       primaryKey: true,
       allowNull: false
     },
-    texto: {
+    titulo: {
       type: DataTypes.STRING(200),
       allowNull: false
     },
+	codigo: {
+		type: DataTypes.STRING(),
+		allowNull: false
+	},
+	indicaciones: {
+		type: DataTypes.STRING(1000),
+		allowNull: false
+	  },
     fechaHora: {
       type: DataTypes.DATE,
       allowNull: false
     },
-    salas_idSala: {
+    cursos_idCurso: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
@@ -42,15 +52,15 @@ export const Mensaje = db.define<Model<MensajeAttributes>>(
   }
 );
 
-Sala.hasMany(Mensaje, {
+Curso.hasMany(Codigo, {
   sourceKey: 'idSala',
   foreignKey: 'salas_idSala'
 });
 
-Usuario.hasMany(Mensaje, {
+Usuario.hasMany(Codigo, {
   sourceKey: 'email',
   foreignKey: 'usuarios_email'
 });
 
-Mensaje.belongsTo(Sala, { foreignKey: 'salas_idsala' });
-Mensaje.belongsTo(Usuario, { foreignKey: 'usuarios_email' });
+Codigo.belongsTo(Sala, { foreignKey: 'salas_idsala' });
+Codigo.belongsTo(Usuario, { foreignKey: 'usuarios_email' });
