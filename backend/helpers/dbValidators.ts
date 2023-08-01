@@ -1,4 +1,4 @@
-import { Sala } from '../models/sala';
+import { Curso } from '../models/curso';
 import { Usuario } from '../models/usuario';
 
 export const emailExiste = async (email = '') => {
@@ -13,14 +13,14 @@ export const emailExiste = async (email = '') => {
   }
 };
 
-export const salaExiste = async (nombre = '') => {
-  const existeSala = await Sala.findOne({
+export const cursoExiste = async (nombre = '') => {
+  const existeCurso = await Curso.findOne({
     where: {
       nombre: nombre
     }
   });
 
-  if (existeSala) {
-    throw new Error(`La sala: ${nombre}, ya está creada`);
+  if (existeCurso) {
+    throw new Error(`El curso: ${nombre}, ya está creado`);
   }
 };

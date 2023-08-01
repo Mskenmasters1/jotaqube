@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import { Sala } from '../models/sala';
+import { Curso } from '../models/curso';
 
-export const getSalas = async (req: Request, res: Response) => {
+export const getCursos = async (req: Request, res: Response) => {
   try {
-    const salas = await Sala.findAll();
-    res.status(200).json(salas);
+    const cursos = await Curso.findAll();
+    res.status(200).json(cursos);
   } catch (error) {
     res.status(500).json({
       msg: 'Error en el acceso a datos'
@@ -12,16 +12,16 @@ export const getSalas = async (req: Request, res: Response) => {
   }
 };
 
-export const insertSala = async (req: Request, res: Response) => {
+export const insertCurso = async (req: Request, res: Response) => {
   const { nombre } = req.body;
 
   try {
-    const sala = await Sala.create({
+    const curso = await Curso.create({
       nombre
     });
 
     res.status(200).json({
-      sala
+      curso: curso
     });
   } catch (error) {
     console.log(error);

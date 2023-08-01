@@ -1,15 +1,15 @@
 import { DataTypes, Model } from 'sequelize';
 import { db } from '../database/config';
 
-interface SalaAttributes {
-  idSala?: number;
+interface CursoAttributes {
+  idCurso?: number;
   nombre: string;
 }
 
-export const Sala = db.define<Model<SalaAttributes>>(
-  'Sala',
+export const Curso = db.define<Model<CursoAttributes>>(
+  'Curso',
   {
-    idSala: {
+    idCurso: {
       type: DataTypes.INTEGER.UNSIGNED,
       autoIncrement: true,
       primaryKey: true,
@@ -21,6 +21,6 @@ export const Sala = db.define<Model<SalaAttributes>>(
     }
   },
   {
-    tableName: 'salas'
+    tableName: 'cursos'
   }
 );

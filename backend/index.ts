@@ -4,7 +4,7 @@ import cors from 'cors';
 import { dbConnection } from './database/config';
 import { routerAuth } from './routes/routerAuth';
 import { routerUsuarios } from './routes/routerUsuarios';
-import { routerSalas } from './routes/routerSalas';
+import { routerCursos } from './routes/routerCursos';
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
@@ -18,7 +18,7 @@ app.use(express.json());
 
 app.use('/api/auth', routerAuth);
 app.use('/api/usuarios', routerUsuarios);
-app.use('/api/salas', routerSalas);
+app.use('/api/cursos', routerCursos);
 
 // Puesta en marcha
 app.listen(port, () => {
