@@ -1,38 +1,38 @@
 import { useEffect, useState } from 'react';
-import { ISala } from '../../interfaces/sala.interface';
 import { clienteAxios } from '../../config/clienteAxios';
 import { handlerAxiosError } from '../../helpers/handlerAxiosError';
 import { useNavigate } from 'react-router-dom';
+import { ICurso } from '../../interfaces/curso.interface';
 
-interface ISalasListProps {
-  setRefreshSalas: React.Dispatch<React.SetStateAction<boolean>>;
-  refreshSalas: boolean;
+interface ICursosListProps {
+  setRefreshCursos: React.Dispatch<React.SetStateAction<boolean>>;
+  refreshCursos: boolean;
 }
 
-export const SalasList = ({ refreshSalas, setRefreshSalas }: ISalasListProps) => {
+export const CursosList = ({ refreshCursos: refreshCursos, setRefreshCursos: setRefreshCursos }: ICursosListProps) => {
   const navigate = useNavigate();
-  const [salas, setSalas] = useState<ISala[]>([]);
+  const [cursos, setCursos] = useState<ICurso[]>([]);
   const [errorMsg, setErrorMsg] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [ok, setOk] = useState<boolean>(true);
 
   useEffect(() => {
-    if (refreshSalas) {
-      getSalas();
+    if (refreshCursos) {
+      getCursos();
     }
-  }, [refreshSalas]);
+  }, [refreshCursos]);
 
-  const getSalas = async () => {
+  const getCursos = async () => {
     try {
       setLoading(true);
       setErrorMsg('');
-      const { data } = await clienteAxios.get<ISala[]>('/salas');
-      setSalas(data);
-      setRefreshSalas(false);
+      const { data } = await clienteAxios.get<ICurso[]>('/cursos');
+      setCursos(data);
+      setRefreshCursos(false);
       setLoading(false);
       setOk(true);
     } catch (error) {
-      setRefreshSalas(false);
+      setRefreshCursos(false);
       setOk(false);
       setLoading(false);
       const errores = await handlerAxiosError(error);
@@ -40,16 +40,16 @@ export const SalasList = ({ refreshSalas, setRefreshSalas }: ISalasListProps) =>
     }
   };
 
-  const goToSala = async (sala: ISala) => {
-    const url = `/chat/${sala.idSala}/${sala.nombre}`;
+  const goToCurso = async (curso: ICurso) => {
+    const url = `/chat/${curso.idCurso}/${curso.nombre}`;
     navigate(url);
   };
 
   return (
     <>
-      {salas?.length > 0 && (
+      {cursos?.length > 0 && (
         <>
-          <h2>Total salas: {salas.length}</h2>
+          <h2>Total cursos: {cursos.length}</h2>
           <table className="table">
             <thead>
               <tr>
@@ -58,11 +58,11 @@ export const SalasList = ({ refreshSalas, setRefreshSalas }: ISalasListProps) =>
               </tr>
             </thead>
             <tbody>
-              {salas.map((x) => (
-                <tr key={x.idSala}>
+              {cursos.map((x) => (
+                <tr key={x.idCurso}>
                   <td>{x.nombre}</td>
                   <td>
-                    <button className="btn btn-info" onClick={() => goToSala(x)}>
+                    <button className="btn btn-info" onClick={() => goToCurso(x)}>
                       Entrar
                     </button>
                   </td>
@@ -72,12 +72,12 @@ export const SalasList = ({ refreshSalas, setRefreshSalas }: ISalasListProps) =>
           </table>
         </>
       )}
-      {refreshSalas && loading && (
+      {refreshCursos && loading && (
         <div className="alert alert-warning" role="status" aria-live="polite">
-          Actualizando salas...
+          Actualizando cursos...
         </div>
       )}
-      {!ok && errorMsg && !refreshSalas && (
+      {!ok && errorMsg && !refreshCursos && (
         <div className="alert alert-danger" role="status" aria-live="polite">
           {errorMsg}
         </div>

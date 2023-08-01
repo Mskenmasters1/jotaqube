@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { AuthLayout } from '../layouts/AuthLayout';
 import { LoginPage } from '../pages/login/LoginPage';
 import { PagesLayout } from '../layouts/PagesLayout';
-import { SalasPage } from '../pages/salas/SalasPage';
+import { CursosPage } from '../pages/cursos/CursosPage';
 import { ChatPage } from '../pages/chat/ChatPage';
 import { useContext, useEffect, useState } from 'react';
 import { ILocalStorageInfo } from '../interfaces/localStorageInfo.interface';
@@ -31,7 +31,7 @@ export const AppRouter = () => {
           </Route>
 
           <Route path="/chat" element={<PagesLayout />}>
-            <Route index element={<SalasPage />} />
+            <Route index element={<CursosPage />} />
             <Route path="/chat/:idSala/:nombre" element={<ChatPage />} />
           </Route>
         </Routes>

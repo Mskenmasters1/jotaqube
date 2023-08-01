@@ -1,34 +1,34 @@
 import { FormEvent, useState } from 'react';
 import { useForm } from '../../hooks/useForm';
 import { handlerAxiosError } from '../../helpers/handlerAxiosError';
-import { ISala } from '../../interfaces/sala.interface';
 import { clienteAxios } from '../../config/clienteAxios';
+import { ICurso } from '../../interfaces/curso.interface';
 
-interface ISalasFormProps {
-  setRefreshSalas: React.Dispatch<React.SetStateAction<boolean>>;
+interface ICursosFormProps {
+  setRefreshCursos: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const SalasForm = ({ setRefreshSalas }: ISalasFormProps) => {
+export const CursosForm = ({ setRefreshCursos: setRefreshCursos }: ICursosFormProps) => {
   const [errorMsg, setErrorMsg] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [ok, setOk] = useState<boolean>(true);
-  const { form, onInputChange, onResetForm } = useForm<ISala>({
+  const { form, onInputChange, onResetForm } = useForm<ICurso>({
     nombre: ''
   });
 
   const { nombre } = form;
 
-  const crearSala = async (e: FormEvent) => {
+  const crearCurso = async (e: FormEvent) => {
     e.preventDefault();
 
     try {
       setLoading(true);
       setErrorMsg('');
-      await clienteAxios.post<ISala>('/salas', { nombre });
+      await clienteAxios.post<ICurso>('/cursos', { nombre });
       onResetForm();
       setOk(true);
       setLoading(false);
-      setRefreshSalas(true);
+      setRefreshCursos(true);
     } catch (error) {
       setOk(false);
       setLoading(false);
@@ -39,26 +39,26 @@ export const SalasForm = ({ setRefreshSalas }: ISalasFormProps) => {
 
   return (
     <>
-      <h1>Crear sala</h1>
+      <h1>Crear curso</h1>
       <hr />
 
-      <form onSubmit={crearSala}>
+      <form onSubmit={crearCurso}>
         <div className="form-group">
-          <label htmlFor="nombre">Nombre de la sala</label>
+          <label htmlFor="nombre">Nombre del curso</label>
           <input id="nombre" type="text" className="form-control" value={nombre} onChange={onInputChange} required />
         </div>
         {nombre === '' && (
           <div className="alert alert-danger" role="alert">
-            El nombre de la sala es obligatorio
+            El nombre del curso es obligatorio
           </div>
         )}
         <button className="btn btn-primary" type="submit" disabled={nombre.trim() === ''}>
-          Crear sala
+          Crear curso
         </button>
       </form>
       {loading && (
         <div className="alert alert-warning" role="alert">
-          Creando sala ...
+          Creando curso ...
         </div>
       )}
       {!ok && errorMsg && !loading && (
