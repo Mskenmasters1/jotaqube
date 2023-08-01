@@ -1,5 +1,6 @@
-drop database codejqb;
+drop database if exists codejqb;
 create database codejqb;
+ALTER DATABASE codejqb CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 use codejqb;
 
 CREATE TABLE usuarios (
@@ -16,11 +17,12 @@ CREATE TABLE cursos (
     PRIMARY KEY (idCurso)
 );
 
-CREATE TABLE mensajes (
-    idMensaje INT NOT NULL AUTO_INCREMENT,
-    texto VARCHAR(200) NOT NULL,
+CREATE TABLE codigos (
+    idCodigo INT NOT NULL AUTO_INCREMENT,
+    codigo mediumtext,
+    indicaciones VARCHAR(200) NOT NULL,
     fechaHora DATETIME NOT NULL,
-    salas_idSala INT UNSIGNED NOT NULL,
+    cursos_idCurso INT UNSIGNED NOT NULL,
     usuarios_email VARCHAR(100) NOT NULL,
     PRIMARY KEY (idMensaje),
     FOREIGN KEY (cursos_idCurso) REFERENCES cursos (idCurso),
