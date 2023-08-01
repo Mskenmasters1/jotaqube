@@ -23,7 +23,7 @@ CREATE TABLE codigos (
 	idCodigo INT NOT NULL AUTO_INCREMENT,
 	titulo varchar(1000),
 	codigo mediumtext,
-	indicaciones VARCHAR(200) NOT NULL,
+	indicaciones VARCHAR(200),
 	fechaHora DATETIME NOT NULL,
 	cursos_idCurso INT UNSIGNED NOT NULL,
 	usuarios_email VARCHAR(100) NOT NULL,
