@@ -9,11 +9,11 @@ export const routerCursos = Router();
 routerCursos.get('/', getCursos);
 
 routerCursos.post(
-  '/',
-  [
-    check('nombre', 'El nombre del curso es obligatorio').not().isEmpty(),
-    check('nombre').custom(cursoExiste),
-    validarCampos
-  ],
-  insertCurso
+	'/',
+	[
+		check('nombre', 'El nombre del curso es obligatorio').not().isEmpty(),
+		check('nombre').custom(cursoExiste),
+		validarCampos
+	],
+	insertCurso
 );
