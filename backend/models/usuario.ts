@@ -20,8 +20,8 @@ export const Usuario = db.define<Model<UsuarioAttributes>>(
       allowNull: false
     },
     token: {
-      type: DataTypes.STRING,
-      allowNull: true,
+      type: DataTypes.STRING(500),
+      allowNull: false,
       defaultValue: ''
     }
   },

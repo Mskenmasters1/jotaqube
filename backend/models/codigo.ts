@@ -32,14 +32,14 @@ export const Codigo = db.define<Model<CodigoAttributes>>(
 	},
 	indicaciones: {
 		type: DataTypes.STRING(1000),
-		allowNull: false
+		allowNull: true
 	  },
     fechaHora: {
       type: DataTypes.DATE,
       allowNull: false
     },
     cursos_idCurso: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false
     },
     usuarios_email: {
@@ -48,13 +48,13 @@ export const Codigo = db.define<Model<CodigoAttributes>>(
     }
   },
   {
-    tableName: 'mensajes'
+    tableName: 'codigos'
   }
 );
 
 Curso.hasMany(Codigo, {
-  sourceKey: 'idSala',
-  foreignKey: 'salas_idSala'
+  sourceKey: 'idCurso',
+  foreignKey: 'cursos_idCurso'
 });
 
 Usuario.hasMany(Codigo, {
@@ -62,5 +62,5 @@ Usuario.hasMany(Codigo, {
   foreignKey: 'usuarios_email'
 });
 
-Codigo.belongsTo(Sala, { foreignKey: 'salas_idsala' });
+Codigo.belongsTo(Curso, { foreignKey: 'cursos_idCurso' });
 Codigo.belongsTo(Usuario, { foreignKey: 'usuarios_email' });

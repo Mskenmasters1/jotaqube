@@ -27,7 +27,7 @@ CREATE TABLE codigos (
 	fechaHora DATETIME NOT NULL,
 	cursos_idCurso INT UNSIGNED NOT NULL,
 	usuarios_email VARCHAR(100) NOT NULL,
-	PRIMARY KEY (idMensaje),
+	PRIMARY KEY (idCodigo),
 	FOREIGN KEY (cursos_idCurso) REFERENCES cursos (idCurso),
 	FOREIGN KEY (usuarios_email) REFERENCES usuarios (email)
 );
