@@ -55,7 +55,7 @@ Aquí tendrás que hacer los siguientes camios:
 
 #### Instalación del servidor
 
-Teneiendo una terminal en la carpeta del proyecto ejecuta esto:
+Teniendo una terminal en la carpeta del proyecto ejecuta esto:
 
 ```shell
 cd backend
