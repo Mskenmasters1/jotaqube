@@ -93,7 +93,7 @@ Por último, abre el navegador de tu preferencia y ve a la dirección `http://lo
 
 Este proyecto está hecho por los alumnos:
 
-- [Bilal L. C.](https://github.com/Mskenmasters)
+- [Bilal Lahsen Chergui](https://github.com/Mskenmasters)
 - [javier Goñi López](https://github.com/dinoscor)
 - [Quico Saval Vicente](https://github.com/quicosv)
 
