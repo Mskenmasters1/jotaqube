@@ -94,7 +94,7 @@ Por último, abre el navegador de tu preferencia y ve a la dirección `http://lo
 Este proyecto está hecho por los alumnos:
 
 - [Bilal L. C.](https://github.com/Mskenmasters)
-- [javier Goñi López](https://github.com/dinoscord)
+- [javier Goñi López](https://github.com/dinoscor)
 - [Quico Saval Vicente](https://github.com/quicosv)
 
 Agradecemos las explicaciones teóricas, la resolución de dudas y el soporte a nivel visual de nuestro profesor [Juan Luis Ochoa.](https://github.com/jlochoa)
