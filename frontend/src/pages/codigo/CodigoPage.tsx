@@ -1,10 +1,10 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
 export const CodigoPage = () => {
-	const { idSala, nombre } = useParams();
+	const { idCurso, nombre } = useParams();
 	const navigate = useNavigate();
 
-	const goToSalas = () => {
+	const goToCursos = () => {
 		navigate('/chat');
 	};
 
@@ -12,11 +12,11 @@ export const CodigoPage = () => {
 		<>
 			<div className="row">
 				<div className="col">
-					<h1>Benvenido a la sala {nombre}</h1>
+					<h1>Bienvenido al curso {nombre}</h1>
 				</div>
 				<div className="col">
-					<button className="btn btn-info" onClick={goToSalas}>
-						Volver a salas
+					<button className="btn btn-info" onClick={goToCursos}>
+						Volver a cursos
 					</button>
 				</div>
 			</div>

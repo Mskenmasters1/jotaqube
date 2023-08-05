@@ -57,7 +57,7 @@ export const PagesLayout = () => {
 			<header className="container">
 				<div className="row">
 					<div className="col-4">
-						<h1>Chat</h1>
+						<h1>Código</h1>
 					</div>
 					<div className="col-4">
 						<SocketStatus online={online} />
