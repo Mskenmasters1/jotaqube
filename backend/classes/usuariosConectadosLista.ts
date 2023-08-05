@@ -18,10 +18,10 @@ export class UsuariosConectadosLista {
 		}
 	}
 
-	addToSala(email: string, sala: string): void {
+	addToCurso(email: string, curso: string): void {
 		const usuario = this.usuariosConectados.find((x) => x.email === email);
 		if (usuario) {
-			usuario.sala = sala;
+			usuario.curso = curso;
 		}
 	}
 
@@ -32,7 +32,7 @@ export class UsuariosConectadosLista {
 	removeUsuarioCerrarSesion(email: string): void {
 		const usuario = this.usuariosConectados.find((x) => x.email === email);
 		if (usuario) {
-			usuario.sala = '';
+			usuario.curso = '';
 		}
 	}
 
@@ -40,12 +40,12 @@ export class UsuariosConectadosLista {
 		return this.usuariosConectados;
 	}
 
-	getSalaUsuario(idSesion: string): string {
-		return this.usuariosConectados.find((x) => x.idSesion === idSesion)?.sala || '';
+	getCursoUsuario(idSesion: string): string {
+		return this.usuariosConectados.find((x) => x.idSesion === idSesion)?.curso || '';
 	}
 
-	getUsuariosDeSala(sala: string): UsuarioConectado[] {
-		const usuariosDeSala = this.usuariosConectados.filter((x) => x.sala === sala);
-		return usuariosDeSala;
+	getUsuariosDeCurso(curso: string): UsuarioConectado[] {
+		const usuariosDeCurso = this.usuariosConectados.filter((x) => x.curso === curso);
+		return usuariosDeCurso;
 	}
 }

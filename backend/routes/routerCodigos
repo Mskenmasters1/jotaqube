@@ -1,0 +1,21 @@
+import { Router } from 'express';
+import { check } from 'express-validator';
+import { validarCampos } from '../middlewares/validarCampos';
+import { getCodigos, insertCodigo } from '../controllers/codigosController';
+
+export const routerCodigos = Router();
+
+routerCodigos.get('/:idCurso', getCodigos);
+
+routerCodigos.post(
+  '/',
+  [
+    check('usuarios_email', 'El email es obligatorio').not().isEmpty(),
+    check('usuarios_email', 'El email no es válido').isEmail(),
+    check('codigo', 'El codigo es obligatorio').not().isEmpty(),
+    check('cursos_idCurso', 'El id del curso es obligatorio').not().isEmpty(),
+    check('cursos_idCurso', 'El nombre del curso es obligatorio').not().isEmpty(),
+    validarCampos
+  ],
+  insertCodigo
+);
