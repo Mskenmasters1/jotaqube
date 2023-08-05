@@ -4,25 +4,25 @@ import { handlerAxiosError } from '../../helpers/handlerAxiosError';
 import { IUsuarioInfoContext } from '../../interfaces/context.interface';
 import { AppContext } from '../../context/AppContext';
 import { clienteAxios } from '../../config/clienteAxios';
-import { IMensaje } from '../../interfaces/mensaje.interface';
+import { ICodigo } from '../../interfaces/codigo.interface';
 
-interface IChatFormProps {
-	idSala: number;
-	sala: string;
+interface ICodigoFormProps {
+	idCurso: number;
+	curso: string;
 }
 
-export const ChatForm = ({ idSala, sala }: IChatFormProps) => {
+export const CursoForm = ({ idCurso, curso }: ICodigoFormProps) => {
 	const { usuarioInfo } = useContext<IUsuarioInfoContext>(AppContext);
 	const [errorMsg, setErrorMsg] = useState<string>('');
 	const [loading, setLoading] = useState<boolean>(false);
 
-	const { form, onInputChange } = useForm<IMensaje>({
+	const { form, onInputChange } = useForm<ICodigo>({
 		usuarios_email: usuarioInfo.email,
 		texto: '',
-		salas_idSala: idSala
+		cursos_idCurso: idCurso
 	});
 
-	const { usuarios_email, texto, salas_idSala } = form;
+	const { usuarios_email, texto, cursos_idCurso } = form;
 
 	const send = async (e: FormEvent) => {
 		e.preventDefault();
@@ -30,7 +30,7 @@ export const ChatForm = ({ idSala, sala }: IChatFormProps) => {
 		try {
 			setLoading(true);
 			setErrorMsg('');
-			await clienteAxios.post<IMensaje>('/mensajes', { usuarios_email, texto, salas_idSala, sala });
+			await clienteAxios.post<ICodigo>('/codigos', { usuarios_email, texto, cursos_idCurso, curso });
 			setLoading(false);
 		} catch (error) {
 			setLoading(false);
@@ -41,12 +41,12 @@ export const ChatForm = ({ idSala, sala }: IChatFormProps) => {
 
 	return (
 		<>
-			<h2>Enviar mensaje</h2>
+			<h2>Enviar código</h2>
 			<hr />
 
 			<form onSubmit={send}>
 				<div className="form-group">
-					<label htmlFor="texto">Texto</label>
+					<label htmlFor="texto">Código</label>
 					<input id="texto" type="texto" className="form-control" value={texto} onChange={onInputChange} required />
 				</div>
 
@@ -56,7 +56,7 @@ export const ChatForm = ({ idSala, sala }: IChatFormProps) => {
 			</form>
 			{loading && (
 				<div className="alert alert-warning" role="alert">
-					Enviando mensaje...
+					Enviando código...
 				</div>
 			)}
 			{/* Si errorFetch es true, mostramos un mensaje de error al usuario */}
