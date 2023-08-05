@@ -1,35 +1,35 @@
 import { useState, useContext, useEffect } from 'react';
 import { IUsuarioInfoContext } from '../../interfaces/context.interface';
 import { AppContext } from '../../context/AppContext';
-import { IMensaje } from '../../interfaces/mensaje.interface';
 import { clienteAxios } from '../../config/clienteAxios';
 import { handlerAxiosError } from '../../helpers/handlerAxiosError';
+import { ICodigo } from '../../interfaces/codigo.interface';
 
-interface IChatMensajesListProps {
-	idSala: number;
+interface ICodigoListProps {
+	idCurso: number;
 }
 
-export const ChatMensajesList = ({ idSala }: IChatMensajesListProps) => {
+export const CodigoList = ({ idCurso }: ICodigoListProps) => {
 	const { usuarioInfo } = useContext<IUsuarioInfoContext>(AppContext);
-	const [mensajes, setMensajes] = useState<IMensaje[]>([]);
+	const [codigos, setCodigos] = useState<ICodigo[]>([]);
 	const [errorMsg, setErrorMsg] = useState<string>('');
 	const [loading, setLoading] = useState<boolean>(false);
 	const [ok, setOk] = useState<boolean>(true);
 	const { socket } = usuarioInfo;
-	socket?.on('mensajes-sala', (mensajes: IMensaje[]) => {
-		setMensajes(mensajes);
+	socket?.on('codigos-curso', (codigos: ICodigo[]) => {
+		setCodigos(codigos);
 	});
 
 	useEffect(() => {
-		getMensajes();
+		getCodigos();
 	}, []);
 
-	const getMensajes = async () => {
+	const getCodigos = async () => {
 		try {
 			setLoading(true);
 			setErrorMsg('');
-			const { data } = await clienteAxios.get<IMensaje[]>(`/mensajes/${idSala}`);
-			setMensajes(data);
+			const { data } = await clienteAxios.get<ICodigo[]>(`/codigos/${idCurso}`);
+			setCodigos(data);
 			setLoading(false);
 			setOk(true);
 		} catch (error) {
@@ -51,17 +51,17 @@ export const ChatMensajesList = ({ idSala }: IChatMensajesListProps) => {
 
 	return (
 		<>
-			<h2>Mensajes</h2>
+			<h2>Códigos</h2>
 			<ul className="list-group">
-				{mensajes.map((x) => (
-					<li className="list-group-item" key={x.idMensaje}>
+				{codigos.map((x) => (
+					<li className="list-group-item" key={x.idCodigo}>
 						{x.usuarios_email} - {transformDate(new Date(x.fechaHora!))}: {x.texto}
 					</li>
 				))}
 			</ul>
 			{loading && (
 				<div className="alert alert-warning" role="status" aria-live="polite">
-					Actualizando mensajes...
+					Actualizando códigos...
 				</div>
 			)}
 			{!ok && errorMsg && (
